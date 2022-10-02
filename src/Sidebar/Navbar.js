@@ -1,6 +1,6 @@
 import React,{useState} from "react"
 import "./Navbar.css"
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar'
+import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent, SidebarFooter } from 'react-pro-sidebar'
 import './custom.scss'
 import { FaList, FaRegHeart } from "react-icons/fa";
 import {
@@ -23,6 +23,7 @@ export default function Navbar()
         <>
         <div id="header">
           {/* collapsed props to change menu size using menucollapse state */}
+          <div className="sideBar">
           <ProSidebar collapsed={menuCollapse}>
             <SidebarHeader>
               <div className="logotext">
@@ -51,6 +52,7 @@ export default function Navbar()
               </Menu>
             </SidebarFooter>
           </ProSidebar>
+        </div>
         </div>
       </>
       );
