@@ -12,12 +12,12 @@ import {
 import { RiPencilLine } from "react-icons/ri";
 import { BiCog } from "react-icons/bi";
 import "../Login"
-import { Router, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Navbar()
 {  
-  
+  let navigate=useNavigate()
     const menuIconClick = () => {
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
       };
@@ -48,9 +48,10 @@ export default function Navbar()
             </SidebarContent>
             <SidebarFooter>
               <Menu iconShape="square">
-                <MenuItem icon={<FiLogIn />}>
+                <MenuItem icon={<FiLogIn />} onClick={()=>{
+                  navigate("/login")
+                }}>
                   Login
-                  {/* <Link to ="Login" /> */}
                  </MenuItem>
               </Menu>
             </SidebarFooter>
