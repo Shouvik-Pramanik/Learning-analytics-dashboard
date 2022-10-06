@@ -1,3 +1,7 @@
 .sideBar{
     height: 100vh;
 }
+
+.closemenu{
+    padding: 16px;
+}

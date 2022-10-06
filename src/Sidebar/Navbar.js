@@ -28,9 +28,6 @@ export default function Navbar()
           <div className="sideBar">
           <ProSidebar collapsed={menuCollapse}>
             <SidebarHeader>
-              <div className="logotext">
-                <p>{menuCollapse ? "Logo" : "Big Logo"}</p>
-              </div>
               <div className="closemenu" onClick={menuIconClick}>
                 {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />}
               </div>
