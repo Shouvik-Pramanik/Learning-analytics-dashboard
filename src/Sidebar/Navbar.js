@@ -11,7 +11,6 @@ import {
 } from "react-icons/fi";
 import { RiPencilLine } from "react-icons/ri";
 import { BiCog } from "react-icons/bi";
-import "../Login"
 import { useNavigate } from "react-router-dom";
 
 
