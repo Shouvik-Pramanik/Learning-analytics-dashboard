@@ -4,9 +4,6 @@
 /node_modules
 /.pnp
 .pnp.js
-/flask-server/Lib
-/flask-server/Scripts
-
 # testing
 /coverage
 
