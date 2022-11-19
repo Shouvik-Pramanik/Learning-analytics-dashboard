@@ -1,7 +1,12 @@
 const express=require("express")
 const app=express()
+const cors=require("cors")
+app.use(cors())
+const mongoose=require("mongoose")
 
-app.get("/hello",(req,res)=>{
+mongoose.connect("mongodb://localhost:27017")
+
+app.post("/api/login",(req,res)=>{
     res.send("hello world")
 })
 
