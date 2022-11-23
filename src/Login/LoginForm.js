@@ -1,10 +1,8 @@
 import React,{useState} from 'react'
-import { useNavigate } from "react-router-dom";
 import "./Login.css"
 import axios from 'axios';
 
 export default function SignInPage() {
-    let navigate=useNavigate()
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -18,11 +16,20 @@ export default function SignInPage() {
     }
     const login = () => {
         axios.post("http://localhost:1200/login", user)
-        .then(res => console.log(res))
+        .then(res => {
+            if(res.data.user)
+            {
+                console.log(res.data.user)
+                window.location.assign("/dashboard")
+            }
+            else
+            alert("2")
+        })
     }
+
+
     return (
         <div className="text-center m-5-auto">
-            <h2>Sign in to us</h2>
             <form>
                 <p>
                     <label>Enrollment number</label><br/>
@@ -48,8 +55,6 @@ export default function SignInPage() {
                 </p>
                 <p>
                 <div className="btn-login" onClick={login}>Login</div>
-                    <div className="btn-login" onClick={()=>{
-                  navigate("/") }}> Back to homepage</div>
                 </p>
             </form>
         </div>

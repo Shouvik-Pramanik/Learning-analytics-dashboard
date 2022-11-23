@@ -4,8 +4,8 @@ var cors = require('cors')
 var mongoose = require('mongoose')
 const app = express()
 app.use(express.json())
-app.use(express.urlencoded())
 app.use(cors())
+const jwt=require("jsonwebtoken")
 
 mongoose.connect("mongodb+srv://ShouvikP:LmaoDed@mlbd.tmzqfea.mongodb.net/LoginCreds?retryWrites=true&w=majority",{
     useNewUrlParser: true,
@@ -23,16 +23,23 @@ const User = new mongoose.model("User", userSchema)
 app.post("/login", (req,res) => {
     const {email,password} = req.body
     User.findOne({email:email}, (err,user) => {
-        if(user){
-            if (password === user.password) {
-                res.send({message : "Login Successful",user: user})
-            }else{
-                res.send({message : "Passwords do not match"})
-            }
-        }
-        else{
+        if(!user)
+        {
             res.send({message : "User not found"})
         }
+
+        if (password === user.password) {
+            const token=jwt.sign(
+                {
+                    name: email,
+                },
+                "CreatingToken"
+                )
+            res.send({message : "Login Successful",user: token})
+        }else{
+            res.send({message : "Passwords do not match"})
+        }
+        
     })
     console.log(req.body)
 })
