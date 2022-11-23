@@ -1,40 +1,37 @@
 import React,{useState} from 'react'
 import { useNavigate } from "react-router-dom";
 import "./Login.css"
-
+import axios from 'axios';
 
 export default function SignInPage() {
     let navigate=useNavigate()
-    const [enroll,setEnroll]=useState("")
-    const [password,setPassword]=useState("")
-
-    async function loginUser(e)
-    {
-        e.preventDefault()
-        const response=await fetch("http://localhost:1200/api/login",{
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                enroll,
-                password
-            })
+    const [user, setUser] = useState({
+        email: "",
+        password: ""
+    })
+    const handleChange = e => {
+        const { name, value } = e.target
+        setUser({
+            ...user,
+            [name]: value
         })
-        const data=await response.json()
-        console.log(data)
+    }
+    const login = () => {
+        axios.post("http://localhost:1200/login", user)
+        .then(res => console.log(res))
     }
     return (
         <div className="text-center m-5-auto">
             <h2>Sign in to us</h2>
-            <form onSubmit={loginUser}>
+            <form>
                 <p>
                     <label>Enrollment number</label><br/>
                     <input 
-                    type="number" 
-                    name="enroll" 
-                    value={enroll}
-                    onChange={(e)=>setEnroll(e.target.value)}
+                    type="email" 
+                    name="email" 
+                    value={user.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email"
                     required
                     />
                 </p>
@@ -43,15 +40,16 @@ export default function SignInPage() {
                     <br/>
                     <input 
                     type="password" 
-                    value={password}
+                    value={user.password}
                     name="password"
-                    onChange={(e)=>setPassword(e.target.value)}
+                    onChange={handleChange}
+                    placeholder="Enter your password"
                     required />
                 </p>
                 <p>
-                    <button id="sub_btn" type="submit">Login</button>
-                    <button id="sub_btn" onClick={()=>{
-                  navigate("/") }}> Back to homepage</button>
+                <div className="btn-login" onClick={login}>Login</div>
+                    <div className="btn-login" onClick={()=>{
+                  navigate("/") }}> Back to homepage</div>
                 </p>
             </form>
         </div>
