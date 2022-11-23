@@ -7,6 +7,7 @@ export default function SignInPage() {
         email: "",
         password: ""
     })
+
     const handleChange = e => {
         const { name, value } = e.target
         setUser({
@@ -14,16 +15,17 @@ export default function SignInPage() {
             [name]: value
         })
     }
+    
     const login = () => {
         axios.post("http://localhost:1200/login", user)
         .then(res => {
             if(res.data.user)
             {
-                console.log(res.data.user)
+                localStorage.setItem("token",res.data.user)
                 window.location.assign("/dashboard")
             }
             else
-            alert("2")
+            alert("Incorrect details")
         })
     }
 

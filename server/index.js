@@ -34,14 +34,13 @@ app.post("/login", (req,res) => {
                     name: email,
                 },
                 "CreatingToken"
-                )
+            )
             res.send({message : "Login Successful",user: token})
         }else{
-            res.send({message : "Passwords do not match"})
+            res.send({message : "Error logging in"})
         }
         
     })
-    console.log(req.body)
 })
 
 app.listen(1200, () => {
