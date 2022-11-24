@@ -19,10 +19,11 @@ export default function SignInPage() {
     const login = () => {
         axios.post("http://localhost:1200/login", user)
         .then(res => {
+            console.log(res)
             if(res.data.user)
             {
                 localStorage.setItem("token",res.data.user)
-                window.location.assign("/dashboard")
+                // window.location.assign("/dashboard")
             }
             else
             alert("Incorrect details")

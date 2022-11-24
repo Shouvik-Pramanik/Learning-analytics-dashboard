@@ -5,7 +5,7 @@ import './custom.scss'
 import { FaList} from "react-icons/fa";
 import {
   FiHome,
-  FiLogIn,
+  FiLogOut,
   FiArrowLeftCircle,
   FiArrowRightCircle
 } from "react-icons/fi";
@@ -15,6 +15,13 @@ import { useNavigate } from "react-router-dom";
 export default function Navbar()
 {  
   let navigate=useNavigate()
+
+  function logout()
+  {
+    localStorage.removeItem("token")
+    navigate("/")
+  }
+
     const menuIconClick = () => {
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
       };
@@ -44,10 +51,8 @@ export default function Navbar()
             </SidebarContent>
             <SidebarFooter>
               <Menu iconShape="square">
-                <MenuItem icon={<FiLogIn />} onClick={()=>{
-                  navigate("/login")
-                }}>
-                  Login
+                <MenuItem icon={<FiLogOut />} onClick={logout}>
+                  Logout
                  </MenuItem>
               </Menu>
             </SidebarFooter>
