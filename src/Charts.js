@@ -1,28 +1,19 @@
 import axios from 'axios'
 import React,{useState} from 'react'
-var res=require("./Login/LoginForm")
+import { useNavigate } from 'react-router-dom'
 
-export default function Charts() {
+export default function Charts(props) {
 
-    
   const seeData = () => {
-    // axios.post("http://localhost:1202/getd")
-    // .then(res => {
-    //     // console.log(res)
-    //     if(res)
-    //     {
-            console.log(res)
-            // window.location.assign("/dashboard")
-    //     }
-    //     else
-    //     alert("Incorrect details")
-    // })
-}
+    const data=JSON.parse(localStorage.getItem("myData"))
+    console.log(data.T1)
+  }
+  let navigate=useNavigate()
   return (
     <>
       <div>Charts</div>
       <div className="btn-login" onClick={seeData}> See your data</div>
-
+      <div className="btn-login" onClick={()=>{navigate("/dashboard")}}> Go back</div>
     </>
   )
 }

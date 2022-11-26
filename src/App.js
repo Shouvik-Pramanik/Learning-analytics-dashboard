@@ -17,7 +17,11 @@ export default function App() {
         <Route path="/" element={< DefaultLogin/>} />
         <Route path="/dashboard" element={<Navbar />} /> 
         <Route path="/login" element={<LoginForm />} /> 
-        <Route path="/charts" element={<Charts />} /> 
+        <Route path="/charts" element=
+        {<Charts 
+          data="Data" 
+        />} 
+        /> 
       </Routes>
     </div>
     </Router>

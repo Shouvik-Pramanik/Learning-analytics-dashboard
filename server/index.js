@@ -45,29 +45,30 @@ app.post("/getd", (req,res) => {
 
         if(!user)
         {
-            res.send({message : "User not found"})
+            res.send("")
         }
 
         if (password === user.password) {
-            var token=jwt.sign(
+            const token=jwt.sign(
                 {
                     name: email,
                 },
                 "CreatingToken"
             )
+            // localStorage.setItem("token",token)
         }else{
-            res.send({message : "Error logging in"})
+            res.send("")
         }
+    }).catch(error=>{
+        console.log(error)
     })
+    
     User.findOne({email:email},(err,data)=>{
         if(err)
         console.log("Error")
         global.a=data.T2
         console.log(data.T1,data.C431_12_3,global.a)
         res.send(data)
-        // app.get("/getdata",(req,res)=>{
-        //     res.send("hello")
-        // })
     })
 })
 
