@@ -1,12 +1,26 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import "./Login.css"
 import axios from 'axios';
+// var data=require("../.././server/index")
 
 export default function SignInPage() {
     const [user, setUser] = useState({
         email: "",
         password: ""
     })
+
+    // const[d,setD]=useState([{}])
+
+    // useEffect(()=>{
+    //     axios.post("localhost:1202/getdata")
+    //     .then((res)=>{
+    //         console.log(res)
+    //         setD(res)
+    //     })
+    // },[])
+
+    // console.log(d)
+    // console.log(data)
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -17,12 +31,13 @@ export default function SignInPage() {
     }
     
     const login = () => {
-        axios.post("http://localhost:1200/login", user)
+        axios.post("http://localhost:1202/getd", user)
         .then(res => {
-            console.log(res)
-            if(res.data.user)
+            // console.log(res)
+            if(res)
             {
-                localStorage.setItem("token",res.data.user)
+                console.log(res)
+                exports.res=res
                 // window.location.assign("/dashboard")
             }
             else
@@ -35,7 +50,7 @@ export default function SignInPage() {
         <div className="text-center m-5-auto">
             <form>
                 <p>
-                    <label>Enrollment number</label><br/>
+                    <label> Email </label><br/>
                     <input 
                     type="email" 
                     name="email" 

@@ -7,6 +7,8 @@ app.use(express.json())
 app.use(cors())
 const jwt=require("jsonwebtoken")
 
+global.a=0
+
 mongoose.connect("mongodb+srv://ShouvikP:LmaoDed@mlbd.tmzqfea.mongodb.net/users?retryWrites=true&w=majority",{
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -33,32 +35,43 @@ const userSchema = new mongoose.Schema({
 })
 
 const User = new mongoose.model("User", userSchema)
-app.post("/login", (req,res) => {
-    const {email,password} = req.body
+
+
+app.post("/getd", (req,res) => {
+    var {email,password} = req.body
     User.findOne({email:email}, (err,user) => {
+        if(err)
+        console.log("Error")
+
         if(!user)
         {
             res.send({message : "User not found"})
         }
 
         if (password === user.password) {
-            const token=jwt.sign(
+            var token=jwt.sign(
                 {
                     name: email,
                 },
                 "CreatingToken"
             )
-            // console.log(T1)
-            res.send({message : "Login Successful",user: token})
         }else{
             res.send({message : "Error logging in"})
         }
     })
     User.findOne({email:email},(err,data)=>{
-        console.log(data.T1,data.C431_12_3_1)
+        if(err)
+        console.log("Error")
+        global.a=data.T2
+        console.log(data.T1,data.C431_12_3,global.a)
+        res.send(data)
+        // app.get("/getdata",(req,res)=>{
+        //     res.send("hello")
+        // })
     })
 })
 
-app.listen(1200, () => {
-    console.log("Server connected at port 1200")
+
+app.listen(1202, () => {
+    console.log("Server connected at port 1202")
 })
