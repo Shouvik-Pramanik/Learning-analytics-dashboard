@@ -7,8 +7,6 @@ app.use(express.json())
 app.use(cors())
 const jwt=require("jsonwebtoken")
 
-global.a=0
-
 mongoose.connect("mongodb+srv://ShouvikP:LmaoDed@mlbd.tmzqfea.mongodb.net/users?retryWrites=true&w=majority",{
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -55,7 +53,6 @@ app.post("/getd", (req,res) => {
                 },
                 "CreatingToken"
             )
-            // localStorage.setItem("token",token)
         }else{
             res.send("")
         }
@@ -67,7 +64,7 @@ app.post("/getd", (req,res) => {
         if(err)
         console.log("Error")
         global.a=data.T2
-        console.log(data.T1,data.C431_12_3,global.a)
+        console.log(data);
         res.send(data)
     })
 })

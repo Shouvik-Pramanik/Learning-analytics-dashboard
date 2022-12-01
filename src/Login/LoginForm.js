@@ -24,7 +24,7 @@ export default function SignInPage() {
             {
                 console.log(res.data.T1)
                 localStorage.setItem("myData",JSON.stringify(res.data))
-                // window.location.assign("/dashboard")
+                window.location.assign("/dashboard")
             }
             else
             alert("Incorrect details")

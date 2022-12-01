@@ -1,7 +1,37 @@
 .sideBar{
     height: 100vh;
+    position: absolute;
 }
 
 .closemenu{
     padding: 16px;
+}
+
+.alignIt{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+    font-family:"Roboto", sans-serif;
+}
+
+ul{
+    list-style: none;
+}
+
+body{
+    background-color: #433480;
+    color: white;
+
+}
+
+p{
+    font-weight: 600;
+}
+
+h1{
+    padding: 6px;   
+    margin-top: 22px;
 }
