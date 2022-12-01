@@ -13,11 +13,16 @@ import { useNavigate } from "react-router-dom";
 import "@fontsource/roboto";
 
 var data = JSON.parse(localStorage.getItem("myData"))
-// console.log(data[0].marks);
 
 export default function Navbar()
-{  
+{
+  const [seeMarks,setSeeMarks]=useState(false)  
   let navigate=useNavigate()
+
+  function toggle()
+  {
+    setSeeMarks((old)=>!old)
+  }
 
   function logout()
   {
@@ -32,8 +37,41 @@ export default function Navbar()
     return (
       <>
       <div className="alignIt">
-      <h1> Welcome, to the dashboard, {data.Name}! </h1>
-      <h2> Here you can visualise your performance </h2>
+      <h1> Welcome to the dashboard, {data.Name}! </h1>
+      <h4> You can visualise your performance by clicking the "charts" button in the sidebar</h4>
+      <h4> (please log out before logging into another account) </h4>
+      <button onClick={toggle} className="btn"> See your marks </button>
+      {seeMarks && <table rules="none">
+  <thead>
+    <tr>
+      <th>Exam</th>
+      <th>Marks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>T1</td>
+      <td style={{color: "aquamarine"}}>{data.T1}</td>
+      
+    </tr>
+    <tr>
+    <td>T2</td>
+      <td style={{color: "aquamarine"}}>{data.T2}</td>
+      
+    </tr>
+    <tr>
+    <td>T3</td>
+      <td style={{color: "aquamarine"}}>{data.T3}</td>
+     
+    </tr>
+    <tr>
+    <td>TA</td>
+      <td style={{color: "aquamarine"}}>{data.TA}</td>
+      
+    </tr>
+
+  </tbody>
+</table>}
         {/* <ul>
           <li>CO1:{data[0].marks}</li>
           <li>CO2:{data[1].marks}</li>

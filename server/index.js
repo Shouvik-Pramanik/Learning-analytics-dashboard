@@ -17,6 +17,8 @@ mongoose.connect("mongodb+srv://ShouvikP:LmaoDed@mlbd.tmzqfea.mongodb.net/users?
 const userSchema = new mongoose.Schema({
     email: String,
     password: String,
+    Name: String,
+    Batch: String,
     T1: Number,
     T2: Number,
     T3: Number,

@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import "./Login.css"
 import axios from 'axios';
-import Charts from '../Charts';
 
 export default function SignInPage() {
     const [user, setUser] = useState({
